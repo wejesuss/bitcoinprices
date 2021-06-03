@@ -2,8 +2,8 @@ import { createChart } from "lightweight-charts";
 
 const container = document.getElementById("c-main__chart");
 const chart = createChart(container, {
-  width: 400,
-  height: 300,
+  width: container.clientWidth,
+  height: container.clientHeight,
   timeScale: { barSpacing: 30 },
 });
 
@@ -24,6 +24,9 @@ lineSeries.setData([
   { time: "2019-04-19", value: 81.89 },
   { time: "2019-04-20", value: 74.43 },
 ]);
+window.addEventListener("resize", () => {
+  chart.resize(container.clientWidth, container.clientHeight);
+});
 
 lineSeries2.setData([
   { time: "2019-04-10", value: 70.01 },
