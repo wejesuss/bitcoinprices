@@ -3,4 +3,25 @@ $component-name: "c-main";
 .#{$component-name} {
   width: 85%;
   margin: rem(72) auto;
+
+  section {
+    margin-top: rem(56);
+
+    .#{$component-name}__chart-title {
+      text-indent: rem(8);
+      font-size: rem(24);
+      text-shadow: 0px 1px #b1b1b1;
+      text-transform: capitalize;
+      letter-spacing: 0.5px;
+      word-spacing: 0.5px;
+      color: darkorange;
+    }
+  }
+}
+
+##{$component-name} {
+  &__chart {
+    width: 100%;
+    height: rem(300);
+  }
 }
