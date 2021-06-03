@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run dev",
-    "dev": "parcel index.html pt-br.html",
+    "dev": "parcel index.html pt-br.html --https",
     "build": "parcel build index.html"
   },
   "keywords": [
