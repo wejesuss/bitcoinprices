@@ -1,3 +1,5 @@
+@use "sass:math";
+
 // Foundation for Sites by ZURB
 // foundation.zurb.com
 // Licensed under MIT Open Source
@@ -17,7 +19,7 @@ $rem-base: 16px !default;
 /// @param {Number} $num - Number to strip unit from.
 /// @returns {Number} The same number, sans unit.
 @function strip-unit($num) {
-  @return $num / ($num * 0 + 1);
+  @return math.div($num, $num * 0 + 1);
 }
 
 /// Converts one or more pixel values into matching rem values.
@@ -46,7 +48,7 @@ $rem-base: 16px !default;
 // Converts a unitless, pixel, or rem value to em, for use in breakpoints.
 @function -zf-bp-to-em($value) {
   // Pixel and unitless values are converted to rems
-  @if unit($value) == 'px' or unit($value) == '' {
+  @if unit($value) == "px" or unit($value) == "" {
     $value: rem($value);
   }
 
@@ -60,13 +62,15 @@ $rem-base: 16px !default;
 /// @access private
 @function -zf-to-rem($value, $base: $rem-base) {
   // Calculate rem if units for $value is not rem
-  @if (unit($value) != 'rem') {
-    $value: strip-unit($value) / strip-unit($base) * 1rem;
+  @if (unit($value) != "rem") {
+    $value: math.div(strip-unit($value), strip-unit($base)) * 1rem;
   }
 
   // Turn 0rem into 0
   /* stylelint-disable-next-line length-zero-no-unit */
-  @if ($value == 0) { $value: 0; }
+  @if ($value == 0) {
+    $value: 0;
+  }
 
   @return $value;
 }
