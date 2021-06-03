@@ -4,7 +4,6 @@ const container = document.getElementById("c-main__chart");
 const chart = createChart(container, {
   width: container.clientWidth,
   height: container.clientHeight,
-  timeScale: { barSpacing: 30 },
 });
 
 const lineSeries = chart.addLineSeries({
