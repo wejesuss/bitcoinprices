@@ -1,4 +1,0 @@
-{
-  "bitcoinURL": "https://www.quandl.com/api/v3/datasets/BCHAIN/MKPRU/data.json?order=asc",
-  "cornURL": "https://www.quandl.com/api/v3/datasets/TFGRAIN/CORN/data.json?order=asc"
-}

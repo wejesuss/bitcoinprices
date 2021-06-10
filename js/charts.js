@@ -1,5 +1,56 @@
 import { createChart } from "lightweight-charts";
-import { bitcoinURL, cornURL } from "./commodities.json";
+import { endpoints, langs, commodities } from "./meta.json";
+const { bitcoinURL, cornURL } = endpoints;
+
+let commodity = "corn";
+let lang = "en";
+
+window.addEventListener("DOMContentLoaded", () => {
+  redirect();
+});
+
+window.addEventListener("load", () => {
+  console.log(lang, commodity);
+});
+
+function redirect() {
+  let path = location.pathname.split("/");
+  let langIndex = 0;
+  let commodityIndex = 0;
+  let hasLang = false;
+  let hasCommodity = false;
+  let redirect = "";
+
+  path.forEach((value, idx) => {
+    if (langs.includes(value)) {
+      langIndex = idx;
+      hasLang = true;
+    }
+
+    if (commodities.includes(value)) {
+      commodityIndex = idx;
+      hasCommodity = true;
+    }
+  });
+
+  if (!hasLang) {
+    redirect = `/${lang}`;
+  } else {
+    redirect = `/${path[langIndex]}`;
+    lang = path[langIndex];
+  }
+
+  if (!hasCommodity) {
+    redirect += `/${commodity}`;
+  } else {
+    redirect += `/${path[commodityIndex]}`;
+    commodity = path[commodityIndex];
+  }
+
+  if (!hasLang || !hasCommodity) {
+    location.href = ({}, "", redirect);
+  }
+}
 
 const fillkey = `&api_key=${process.env.QUANDL_API_KEY}`;
 
