@@ -21,10 +21,10 @@ Promise.all([
   fetch(`${bitcoinURL}${fillkey}`).then((stream) => stream.json()),
   fetch(`${cornURL}${fillkey}`).then((stream) => stream.json()),
 ]).then(([bitcoinSeries, commoditySeries]) => {
-  const lineData = filterSeries(bitcoinSeries);
-  const lineData2 = filterSeries(commoditySeries);
+  const firstlineData = filterSeries(bitcoinSeries);
+  const secondlineData = filterSeries(commoditySeries);
 
-  const normalizedSeries = normalizeDate(lineData, lineData2);
+  const normalizedSeries = normalizeDate(firstlineData, secondlineData);
   lineSeries.setData(normalizedSeries);
 });
 
