@@ -1,7 +1,7 @@
 $component-name: "c-main";
 
 .#{$component-name} {
-  width: 85%;
+  width: 90%;
   margin: rem(72) auto;
 
   section {
@@ -17,11 +17,164 @@ $component-name: "c-main";
       color: darkorange;
     }
   }
+
+  &__details {
+    margin: 32px auto;
+    width: 100%;
+    max-width: 400px;
+
+    @include breakpoint(small-up) {
+      max-width: 720px;
+    }
+
+    &-info-header {
+      margin: 24px 24px 0;
+    }
+
+    & > summary {
+      padding: 12px;
+      background-color: #fcd810;
+      border: 1px solid #e2c31e;
+      border-bottom: none;
+      border-radius: 6px 6px 0px 0px;
+
+      font-weight: bold;
+      letter-spacing: 0.5px;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      transition: background-color 200ms;
+      box-shadow: #b1b1b1 0px 0px 6px 0px;
+
+      &:hover {
+        background-color: #fad815de;
+      }
+
+      &::before {
+        content: "";
+        background: url("/img/arrow.svg") center no-repeat;
+        width: 20px;
+        height: 20px;
+        margin-right: 8px;
+        transition: transform ease-in-out 305ms;
+      }
+
+      & ~ * {
+        background: #f1f0f0bf;
+        border-radius: 0 0 6px 6px;
+        border: 1px solid #e2c31e;
+        border-top: none;
+        padding: 8px;
+        margin-top: 0em;
+        text-align: justify;
+        line-height: 24px;
+
+        @include breakpoint(small-up) {
+          padding: 8px 24px;
+        }
+
+        & > span {
+          font-style: italic;
+          font-size: 15px;
+        }
+
+        li > span {
+          color: #922c05;
+        }
+      }
+    }
+
+    &[open] > summary {
+      &::before {
+        transform: rotate(180deg);
+        transition: transform ease-out 305ms;
+      }
+
+      ~ * {
+        transform-origin: top center;
+        animation: sweep ease-in-out 0.5s;
+      }
+    }
+
+    &-yellowline {
+      color: #e2c31e;
+      text-shadow: 0.1px 0.1px #333;
+      letter-spacing: 0.5px;
+    }
+
+    &-links {
+      padding-left: 1em;
+      list-style-position: inside;
+
+      span {
+        font-size: 16px;
+      }
+
+      li {
+        margin-top: 8px;
+
+        a {
+          color: #916801;
+          text-decoration: none;
+          transition: all ease 300ms;
+        }
+
+        a:hover {
+          text-decoration: underline;
+          color: #a57706;
+        }
+      }
+
+      li::marker {
+        color: transparent;
+      }
+    }
+
+    &-math-details {
+      ol {
+        padding: 4px;
+        list-style-position: inside;
+
+        ul {
+          padding: 8px;
+
+          @include breakpoint(small-only) {
+            font-size: 16px;
+          }
+        }
+
+        & .#{$component-name}__details-math {
+          word-spacing: -1px;
+          letter-spacing: -0.5px;
+          color: #1d1b1b;
+        }
+      }
+    }
+
+    time {
+      font-family: monospace;
+      font-size: 16px;
+      letter-spacing: -0.5px;
+    }
+  }
 }
 
 ##{$component-name} {
   &__chart {
     width: 100%;
     height: rem(300);
+  }
+}
+
+@keyframes sweep {
+  from {
+    opacity: 0;
+    transform: translateY(-1em) rotateX(-90deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0em) rotateX(0deg);
   }
 }
