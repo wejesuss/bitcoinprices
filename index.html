@@ -85,9 +85,184 @@
       <section>
         <h3 class="c-main__chart-title">Corn</h3>
 
-        <div id="c-main__chart">
+        <div id="c-main__chart"></div>
 
-        </div>
+        <p class="c-main__details-info-header">
+          See below more information about this chart
+        </p>
+
+        <details class="c-main__details">
+          <summary>How to read the chart?</summary>
+          <p>
+            The key to understanding the chart is to observe the
+            <strong>trend</strong> of the
+            <strong class="c-main__details-yellowline">yellow line</strong>. An
+            <strong>uptrend</strong> means more BTC per commodity, that is, you
+            have to spend more bitcoins to buy the commodity in question, while
+            a <strong>downtrend</strong> is the opposite, you need to spend less
+            bitcoins (or a fraction of it) to buy the same thing. All values are
+            in <strong>bits</strong> which is equivalent to
+            <strong>10<sup>-6</sup></strong> Bitcoin or
+            <strong>0.000001</strong> BTC. <br /><br />
+
+            <span>You can change the unit in the chart configs.</span>
+          </p>
+        </details>
+
+        <details class="c-main__details">
+          <summary>Where the data come from?</summary>
+          <div>
+            <p>
+              For this chart, we have interpolated 2 data:
+              <cite>Bitcoin Historical Price</cite> and
+              <cite>Corn Historical Price.</cite>
+            </p>
+            <p>
+              The Bitcoin Historical Price is the daily average market price
+              across major bitcoin exchanges priced in <i>USD</i>.
+            </p>
+            <p>
+              The Corn Historical Price is the cash price of one bushel of corn
+              priced in <i>USD</i> too.
+            </p>
+
+            <p>
+              All these data come from Quandl free API and can be accessed by
+              major web browsers
+            </p>
+            <ul class="c-main__details-links">
+              <span>Get further details:</span>
+              <li>
+                <a
+                  href="https://www.quandl.com/data/BCHAIN/MKPRU-Bitcoin-Market-Price-USD"
+                  rel="help nofollow"
+                  >Bitcoin</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.quandl.com/data/TFGRAIN/CORN-Cash-Price-of-Corn"
+                  rel="help nofollow"
+                  >Corn</a
+                >
+              </li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="c-main__details">
+          <summary>How the math is done?</summary>
+          <div>
+            <p>There are a few steps before drawing the chart</p>
+            <ol>
+              <li>Filter the data</li>
+              <li>Normalize the data</li>
+              <li>Divide it up</li>
+              <li>Convert to Bits and fixed point-notation</li>
+              <li>We're done</li>
+            </ol>
+
+            <span>You'll see it in detail below.</span>
+            <div class="c-main__details-math-details">
+              <ol>
+                <li>
+                  <span>First of all, we have to filter the data</span>
+                  <div>
+                    <p>
+                      The reason why is because the information we get from the
+                      API cannot be used directly.
+                    </p>
+
+                    <p>
+                      The problem is the
+                      <strong>format</strong> of the data, so we have to change
+                      the way the data is presented.
+                    </p>
+                  </div>
+                </li>
+                <li>
+                  <span>Here we have two problems</span>
+                  <div>
+                    <ul>
+                      <li>Some values can be 0 (zero)</li>
+                      <li>The time series probably will not match at first</li>
+                    </ul>
+
+                    <p>
+                      At some times in history, bitcoin price was less than
+                      <strong>1 cent</strong> <sup>(USD)</sup>, if we just
+                      directly calculate, we will divide by 0 (zero) in some
+                      cases, which is problematic.
+                    </p>
+                    <p>
+                      The time series will probably be different, for example,
+                      maybe we have the price of corn on
+                      <time datetime="2019-04-19">04-19-2019</time> but we don't
+                      have the same price value on that date for bitcoin, what
+                      can we do? We just <i>skip</i> that time and see the
+                      following time value.
+                      <br />
+                      <br />
+                      In doing this, we <i>align</i> the time series, so all
+                      dates on one side match the date on the other side.
+                    </p>
+                  </div>
+                </li>
+                <li>
+                  <span>The next step is really simple</span>
+                  <div>
+                    <p>
+                      To find out how much you need to spend to buy something,
+                      in other words, how many bitcoins you need to buy the
+                      commodity, you divide the commodity price by the bitcoin
+                      price.
+                    </p>
+
+                    <p>
+                      For example, let's say on
+                      <time datetime="2019-04-19">04-19-2019</time> for one
+                      bushel of corn you needed $4 and the price of bitcoin was
+                      $5,000. Therefore, a bushel of corn is equivalent to
+                      <span class="c-main__details-math">4 / 5000</span> or
+                      <span class="c-main__details-math">0.0008 BTC</span>.
+                    </p>
+                  </div>
+                </li>
+                <li>
+                  <span>Now we change the unit</span>
+                  <div>
+                    <p>
+                      One Bitcoin is formed by 8 decimal places (one hundred
+                      million satoshis), this can lead to really low and
+                      unreadable numbers.
+                    </p>
+
+                    <p>
+                      To handle this, we convert BTC to Bits, which is a more
+                      readable way of representing fractions of a Bitcoin, one
+                      Bit is equivalent to
+                      <strong>10<sup>-6</sup> BTC</strong> or
+                      <strong>0.000001 BTC</strong>, which means our 0.0008 BTC
+                      will be shown as <strong>800 bits</strong>.
+                    </p>
+
+                    <p>
+                      The next step is to fix the number to 2 decimal places
+                      (0.00). So, 800 bits will be shown as
+                      <strong>800.00 bits</strong>.
+                    </p>
+                  </div>
+                </li>
+                <li>
+                  <span>Enjoy the charts</span>
+                  <div>
+                    <p>Just <strong>HODL</strong> and <strong>HFSR</strong>.</p>
+                  </div>
+                </li>
+              </ol>
+            </div>
+          </div>
+        </details>
       </section>
     </main>
 
