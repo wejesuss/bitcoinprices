@@ -1,6 +1,8 @@
 import { createChart } from "lightweight-charts";
 import { endpoints, langs, commodities } from "./meta.json";
-const { bitcoinURL, cornURL } = endpoints;
+const { bitcoin } = endpoints;
+
+const container = document.getElementById("c-main__chart");
 
 let commodity = "corn";
 let lang = "en";
@@ -10,7 +12,31 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 window.addEventListener("load", () => {
-  console.log(lang, commodity);
+  const fillkey = `&api_key=${process.env.QUANDL_API_KEY}`;
+
+  const chart = createChart(container, {
+    width: container.clientWidth,
+    height: container.clientHeight,
+  });
+
+  const lineSeries = chart.addLineSeries({
+    color: "gold",
+  });
+
+  getSeriesData(endpoints[commodity], fillkey).then(
+    ([bitcoinSeries, commoditySeries]) => {
+      bitcoinSeries = filterSeries(bitcoinSeries);
+      commoditySeries = filterSeries(commoditySeries);
+
+      const normalizedSeries = normalizeDate(bitcoinSeries, commoditySeries);
+
+      renderChart(normalizedSeries, lineSeries);
+    }
+  );
+
+  window.addEventListener("resize", () => {
+    chart.resize(container.clientWidth, container.clientHeight);
+  });
 });
 
 function redirect() {
@@ -52,32 +78,15 @@ function redirect() {
   }
 }
 
-const fillkey = `&api_key=${process.env.QUANDL_API_KEY}`;
+function getSeriesData(commodityUrl, fillkey) {
+  const bitcoinFetchURL = `${bitcoin}${fillkey}`;
+  const commodityFetchURL = `${commodityUrl}${fillkey}`;
 
-const container = document.getElementById("c-main__chart");
-const chart = createChart(container, {
-  width: container.clientWidth,
-  height: container.clientHeight,
-});
-
-const lineSeries = chart.addLineSeries({
-  color: "gold",
-});
-
-window.addEventListener("resize", () => {
-  chart.resize(container.clientWidth, container.clientHeight);
-});
-
-Promise.all([
-  fetch(`${bitcoinURL}${fillkey}`).then((stream) => stream.json()),
-  fetch(`${cornURL}${fillkey}`).then((stream) => stream.json()),
-]).then(([bitcoinSeries, commoditySeries]) => {
-  const firstlineData = filterSeries(bitcoinSeries);
-  const secondlineData = filterSeries(commoditySeries);
-
-  const normalizedSeries = normalizeDate(firstlineData, secondlineData);
-  lineSeries.setData(normalizedSeries);
-});
+  return Promise.all([
+    fetch(bitcoinFetchURL).then((stream) => stream.json()),
+    fetch(commodityFetchURL).then((stream) => stream.json()),
+  ]);
+}
 
 function filterSeries(series) {
   const lineData = series["dataset_data"].data.flatMap(([time, value]) => ({
@@ -119,4 +128,8 @@ function normalizeDate(bitcoinSeries, commoditySeries) {
   }
 
   return normalizedSeries;
+}
+
+function renderChart(normalizedSeries, lineSeries) {
+  lineSeries.setData(normalizedSeries);
 }
