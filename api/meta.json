@@ -1,0 +1,24 @@
+{
+  "endpoints": {
+    "bitcoin": "https://www.quandl.com/api/v3/datasets/BCHAIN/MKPRU/data.json?order=asc",
+    "corn": "https://www.quandl.com/api/v3/datasets/TFGRAIN/CORN/data.json?order=asc",
+    "soybeans": "https://www.quandl.com/api/v3/datasets/TFGRAIN/SOYBEANS/data.json?order=asc",
+    "gold": "https://www.quandl.com/api/v3/datasets/LBMA/GOLD/data.json?order=asc",
+    "silver": "https://www.quandl.com/api/v3/datasets/LBMA/SILVER/data.json?order=asc",
+    "platinum": "https://www.quandl.com/api/v3/datasets/LPPM/PLAT/data.json?order=asc",
+    "palladium": "https://www.quandl.com/api/v3/datasets/LPPM/PALL/data.json?order=asc"
+  },
+  "langs": [
+    "en",
+    "pt"
+  ],
+  "commodities": [
+    "bitcoin",
+    "corn",
+    "soybeans",
+    "gold",
+    "silver",
+    "palladium",
+    "platinum"
+  ]
+}
