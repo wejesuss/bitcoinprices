@@ -19,8 +19,8 @@ module.exports = async (req, res) => {
   const fillkey = `&api_key=${process.env.QUANDL_API_KEY}`;
 
   if (commodity === "all") {
-    const commodities = await getAllSeriesData(fillkey);
-    const series = commodities.map(({ commodity: name, dataset_data }) => ({
+    const allSeries = await getAllSeriesData(fillkey);
+    const series = allSeries.map(({ commodity: name, dataset_data }) => ({
       commodity: name,
       ...removeEmpty(dataset_data),
     }));
