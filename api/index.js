@@ -1,7 +1,10 @@
+import { readFileSync } from "fs";
+import { resolve } from "path";
 import request from "request";
 import { promisify } from "util";
-import { endpoints, commodities } from "./meta.json";
 
+const meta = readFileSync(resolve(__dirname, "..", "./meta.json"), "utf8");
+const { endpoints, commodities } = JSON.parse(meta);
 const fetch = promisify(request);
 
 module.exports = async (req, res) => {
