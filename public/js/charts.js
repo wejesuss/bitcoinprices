@@ -77,8 +77,12 @@ const lineSeries = chart.addLineSeries({
 });
 
 let commodity = "corn";
+let lang = "en";
+let bitcoinUnit = 1000000;
 
 window.addEventListener("DOMContentLoaded", () => {
+  [lang, commodity] = getCommodityAndLang();
+
   let { time, data_series } = storage.getSeries();
 
   if (!time) {
@@ -107,11 +111,28 @@ window.addEventListener("DOMContentLoaded", () => {
 
     renderChart(bitcoinSeries, commoditySeries, lineSeries);
   }
+
+  chart.applyOptions({
+    localization: {
+      locale: lang,
+      priceFormatter: (price) => {
+        console.log(price);
+        return Intl.NumberFormat(lang, {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        }).format(price);
+      },
+    },
+  });
 });
 
 window.addEventListener("resize", () => {
   chart.resize(container.clientWidth, container.clientHeight);
 });
+
+function getCommodityAndLang() {
+  return location.pathname.split("/").filter((v) => v);
+}
 
 async function getDataSeries() {
   const stream = await fetch("/api?commodity=all");
@@ -142,10 +163,8 @@ function normalizeDate(bitcoinSeries, commoditySeries) {
     if (bitcoinDate === commodityDate && bitcoinSeries[i].value !== 0) {
       normalizedSeries.push({
         time: bitcoinDate,
-        value: (
-          (commoditySeries[t].value / bitcoinSeries[i].value) *
-          1000000
-        ).toFixed(2),
+        value:
+          (commoditySeries[t].value / bitcoinSeries[i].value) * bitcoinUnit,
       });
 
       i++;
