@@ -74,11 +74,6 @@ $component-name: "c-main";
           padding: 8px 24px;
         }
 
-        & > span {
-          font-style: italic;
-          font-size: 15px;
-        }
-
         li > span {
           color: #922c05;
         }
@@ -150,6 +145,11 @@ $component-name: "c-main";
           color: #1d1b1b;
         }
       }
+    }
+
+    &-charts-config-reminder {
+      font-style: italic;
+      font-size: 15px;
     }
 
     time {

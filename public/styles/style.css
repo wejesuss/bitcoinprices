@@ -581,10 +581,6 @@ body {
     padding: 8px 24px;
   }
 }
-.c-main__details > summary ~ * > span {
-  font-style: italic;
-  font-size: 15px;
-}
 .c-main__details > summary ~ * li > span {
   color: #922c05;
 }
@@ -639,6 +635,10 @@ body {
   word-spacing: -1px;
   letter-spacing: -0.5px;
   color: #1d1b1b;
+}
+.c-main__details-charts-config-reminder {
+  font-style: italic;
+  font-size: 15px;
 }
 .c-main__details time {
   font-family: monospace;
