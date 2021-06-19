@@ -90,26 +90,25 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   if (storage.shouldUpdateStorage(time, now, data_series)) {
-    getDataSeries().then((series) => {
-      storage.setSeries(series);
-      const bitcoinSeries = series.find(
-        ({ commodity: tag }) => tag === "bitcoin"
-      );
-      const commoditySeries = series.find(
-        ({ commodity: tag }) => tag === commodity
-      );
+    getDataSeries()
+      .then((series) => {
+        storage.setSeries(series);
 
-      renderChart(bitcoinSeries, commoditySeries, lineSeries);
-    });
+        renderChart(series, lineSeries);
+      })
+      .catch((reason) => {
+        console.error(reason);
+
+        if (data_series) {
+          renderChart(data_series, lineSeries);
+        }
+      });
+
+    if (data_series) {
+      renderChart(data_series, lineSeries);
+    }
   } else {
-    const bitcoinSeries = data_series.find(
-      ({ commodity }) => commodity === "bitcoin"
-    );
-    const commoditySeries = data_series.find(
-      ({ commodity: tag }) => tag === commodity
-    );
-
-    renderChart(bitcoinSeries, commoditySeries, lineSeries);
+    renderChart(data_series, lineSeries);
   }
 
   chart.applyOptions({
@@ -179,7 +178,14 @@ function normalizeDate(bitcoinSeries, commoditySeries) {
   return normalizedSeries;
 }
 
-function renderChart(bitcoinSeries, commoditySeries, lineSeries) {
+function renderChart(data_series, lineSeries) {
+  let bitcoinSeries = data_series.find(
+    ({ commodity }) => commodity === "bitcoin"
+  );
+  let commoditySeries = data_series.find(
+    ({ commodity: tag }) => tag === commodity
+  );
+
   bitcoinSeries = filterSeries(bitcoinSeries);
   commoditySeries = filterSeries(commoditySeries);
 
