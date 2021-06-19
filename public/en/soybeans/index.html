@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Commodities Priced in Bitcoin (BTC)</title>
+    <meta
+      name="description"
+      content="Want to see how much you would spend buying this must-have merchandise? See the most traded commodities priced in Bitcoin easily and quickly."
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito:400,800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles/style.css" />
+
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/img/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/img/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/img/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/img/site.webmanifest" />
+    <link rel="mask-icon" href="/img/safari-pinned-tab.svg" color="#5bbad5" />
+    <link rel="shortcut icon" href="/img/favicon.ico" />
+    <meta name="apple-mobile-web-app-title" content="Bitcoin Prices" />
+    <meta name="application-name" content="Bitcoin Prices" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="msapplication-config" content="/img/browserconfig.xml" />
+    <meta name="theme-color" content="#ffffff" />
+  </head>
+  <body>
+    <header class="c-header">
+      <h1>BITCOIN PRICES</h1>
+
+      <ul class="c-header__menu">
+        <li class="c-header__item">
+          <span>COMMODITIES</span>
+          <ul class="c-header__dropdown">
+            <li class="c-header__dropdown-item">
+              <a href="/en/corn" class="c-header__link">Corn</a>
+            </li>
+            <li class="c-header__dropdown-item">
+              <a href="/en/soybeans" class="c-header__link">Soybeans</a>
+            </li>
+            <li class="c-header__dropdown-item">
+              <a href="/en/gold" class="c-header__link">Gold</a>
+            </li>
+            <li class="c-header__dropdown-item">
+              <a href="/en/silver" class="c-header__link">Silver</a>
+            </li>
+            <li class="c-header__dropdown-item">
+              <a href="/en/platinum" class="c-header__link">Platinum</a>
+            </li>
+            <li class="c-header__dropdown-item">
+              <a href="/en/palladium" class="c-header__link">Palladium</a>
+            </li>
+          </ul>
+        </li>
+        <li class="c-header__item">
+          <span class="c-header__flag">
+            <img src="/img/estados-unidos.svg" alt="USA Flag" />
+          </span>
+          <ul class="c-header__dropdown">
+            <li class="c-header__dropdown-item">
+              <a href="/pt/corn" class="c-header__link">Português</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </header>
+
+    <main class="c-main">
+      <h2>See the most traded commodities priced in BTC.</h2>
+      <p>Fiat or Crypto? A long-term view of both scenarios...</p>
+
+      <section>
+        <h3 class="c-main__chart-title">Soybeans</h3>
+
+        <div id="c-main__chart"></div>
+
+        <p class="c-main__details-info-header">
+          See below more information about this chart
+        </p>
+
+        <details class="c-main__details">
+          <summary>How to read the chart?</summary>
+          <p>
+            The key to understanding the chart is to observe the
+            <strong>trend</strong> of the
+            <strong class="c-main__details-yellowline">yellow line</strong>. An
+            <strong>uptrend</strong> means more BTC per commodity, that is, you
+            have to spend more bitcoins to buy the commodity in question, while
+            a <strong>downtrend</strong> is the opposite, you need to spend less
+            bitcoins (or a fraction of it) to buy the same thing. All values are
+            in <strong>bits</strong> which is equivalent to
+            <strong>10<sup>-6</sup></strong> Bitcoin or
+            <strong>0.000001</strong> BTC. <br /><br />
+
+            <span class="c-main__details-charts-config-reminder"
+              >You can change the unit in the chart's configs.</span
+            >
+          </p>
+        </details>
+
+        <details class="c-main__details">
+          <summary>Where does the data come from?</summary>
+          <div>
+            <p>
+              For this chart, we have interpolated 2 data:
+              <cite>Bitcoin Historical Price</cite> and
+              <cite>Soybeans Historical Price.</cite>
+            </p>
+            <p>
+              The Bitcoin Historical Price is the daily average market price
+              across major bitcoin exchanges priced in <i>USD</i>.
+            </p>
+            <p>
+              The Soybeans Historical Price is the cash price of one bushel of
+              soybeans priced in <i>USD</i> too.
+            </p>
+
+            <p>
+              All these data come from Quandl free API and can be accessed by
+              major web browsers
+            </p>
+            <ul class="c-main__details-links">
+              <span>Get further details:</span>
+              <li>
+                <a
+                  href="https://www.quandl.com/data/BCHAIN/MKPRU-Bitcoin-Market-Price-USD"
+                  rel="help nofollow"
+                  >Bitcoin</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.quandl.com/data/TFGRAIN/SOYBEANS-Cash-Price-of-Soybeans"
+                  rel="help nofollow"
+                  >Soybeans</a
+                >
+              </li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="c-main__details">
+          <summary>How is the math done?</summary>
+          <div>
+            <p>There are a few steps before drawing the chart</p>
+            <ol>
+              <li>Filter the data</li>
+              <li>Normalize the data</li>
+              <li>Divide it up</li>
+              <li>Convert to Bits and fixed point-notation</li>
+              <li>We're done</li>
+            </ol>
+
+            <span>You'll see it in detail below.</span>
+            <div class="c-main__details-math-details">
+              <ol>
+                <li>
+                  <span>First of all, we have to filter the data</span>
+                  <div>
+                    <p>
+                      The reason why is because the information we get from the
+                      API cannot be used directly.
+                    </p>
+
+                    <p>
+                      The problem is the
+                      <strong>format</strong> of the data, so we have to change
+                      the way the data is presented.
+                    </p>
+                  </div>
+                </li>
+                <li>
+                  <span>Here we have two problems</span>
+                  <div>
+                    <ul>
+                      <li>Some values can be 0 (zero)</li>
+                      <li>The time series probably will not match at first</li>
+                    </ul>
+
+                    <p>
+                      At some times in history, bitcoin price was less than
+                      <strong>1 cent</strong> <sup>(USD)</sup>, if we just
+                      directly calculate, we will divide by 0 (zero) in some
+                      cases, which is problematic.
+                    </p>
+                    <p>
+                      The time series will probably be different, for example,
+                      maybe we have the price of soybeans on
+                      <time datetime="2019-04-19">04-19-2019</time> but we don't
+                      have the same price value on that date for bitcoin, what
+                      can we do? We just <i>skip</i> that time and see the
+                      following time value.
+                      <br />
+                      <br />
+                      In doing this, we <i>align</i> the time series, so all
+                      dates on one side match the date on the other side.
+                    </p>
+                  </div>
+                </li>
+                <li>
+                  <span>The next step is really simple</span>
+                  <div>
+                    <p>
+                      To find out how much you need to spend to buy something,
+                      in other words, how many bitcoins you need to buy the
+                      commodity, you divide the commodity price by the bitcoin
+                      price.
+                    </p>
+
+                    <p>
+                      For example, let's say on
+                      <time datetime="2019-04-19">04-19-2019</time> for one
+                      bushel of soybeans you needed $8 and the price of bitcoin
+                      was $5,000. Therefore, a bushel of soybeans is equivalent
+                      to <span class="c-main__details-math">8 / 5000</span> or
+                      <span class="c-main__details-math">0.0016 BTC</span>.
+                    </p>
+                  </div>
+                </li>
+                <li>
+                  <span>Now we change the unit</span>
+                  <div>
+                    <p>
+                      One Bitcoin is formed by 8 decimal places (one hundred
+                      million satoshis), this can lead to really small (or big)
+                      and unreadable numbers.
+                    </p>
+
+                    <p>
+                      To handle this, we convert BTC to Bits, which is a more
+                      readable way of representing fractions of a Bitcoin, one
+                      Bit is equivalent to
+                      <strong>10<sup>-6</sup> BTC</strong> or
+                      <strong>0.000001 BTC</strong>, which means our 0.0016 BTC
+                      will be shown as <strong>1600 bits</strong>.
+                    </p>
+
+                    <p>
+                      The next step is to fix the number to 2 decimal places
+                      (0.00). So, 1600 bits will be shown as
+                      <strong>1,600.00 bits</strong>. <br /><br />
+
+                      <span class="c-main__details-charts-config-reminder"
+                        >You can change the unit in the chart's configs.</span
+                      >
+                    </p>
+                  </div>
+                </li>
+                <li>
+                  <span>Enjoy the charts</span>
+                  <div>
+                    <p>Just <strong>HODL</strong> and <strong>HFSR</strong>.</p>
+                  </div>
+                </li>
+              </ol>
+            </div>
+          </div>
+        </details>
+      </section>
+    </main>
+
+    <script src="/js/lightweight-charts.standalone.production.js"></script>
+    <script src="/js/charts.js"></script>
+  </body>
+</html>
