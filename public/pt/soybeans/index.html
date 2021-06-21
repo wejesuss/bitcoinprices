@@ -5,7 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Commodities precificadas em Bitcoin (BTC)</title>
-    <meta http-equiv="refresh" content="0; url=/pt/corn" />
+    <meta
+      name="description"
+      content="Quer ver quanto você gastaria comprando aquela mercadoria indispensável? Veja as commodities mais negociadas com preços em Bitcoin de forma fácil e rápida."
+    />
     <link
       href="https://fonts.googleapis.com/css?family=Nunito:400,800&display=swap"
       rel="stylesheet"
@@ -84,7 +87,7 @@
       <p>Fiat ou Cripto? Uma visão de longo prazo de ambos os cenários...</p>
 
       <section>
-        <h3 class="c-main__chart-title">Milho</h3>
+        <h3 class="c-main__chart-title">Soja</h3>
 
         <div id="c-main__chart"></div>
 
@@ -119,7 +122,7 @@
             <p>
               Para este gráfico, interpolamos 2 dados: o
               <cite>Preço Histórico do Bitcoin</cite> e o
-              <cite>Preço Histórico do Milho.</cite>
+              <cite>Preço Histórico da Soja.</cite>
             </p>
             <p>
               O Preço Histórico do Bitcoin é o preço de mercado médio diário nas
@@ -127,8 +130,8 @@
               <i>dólares americanos</i>.
             </p>
             <p>
-              O Preço Histórico do Milho é o preço à vista de um
-              <i>bushel</i> de milho também cotado em <i>dólares americanos</i>.
+              O Preço Histórico da Soja é o preço à vista de um
+              <i>bushel</i> de soja também cotado em <i>dólares americanos</i>.
             </p>
 
             <p>
@@ -146,9 +149,9 @@
               </li>
               <li>
                 <a
-                  href="https://www.quandl.com/data/TFGRAIN/CORN-Cash-Price-of-Corn"
+                  href="https://www.quandl.com/data/TFGRAIN/SOYBEANS-Cash-Price-of-Soybeans"
                   rel="help nofollow"
-                  >Milho</a
+                  >Soja</a
                 >
               </li>
               <li>
@@ -211,7 +214,7 @@
                     </p>
                     <p>
                       A série temporal provavelmente será diferente, por
-                      exemplo, talvez tenhamos o preço do milho em
+                      exemplo, talvez tenhamos o preço da soja em
                       <time datetime="2019-04-19">19-04-2019</time> mas não
                       temos o mesmo nessa data para o bitcoin, o que fazer? Bem,
                       apenas <i>pulamos</i> essa data e vemos a próxima data.
@@ -236,11 +239,11 @@
                     <p>
                       Por exemplo, digamos que em
                       <time datetime="2019-04-19">19-04-2019</time> por um
-                      <i>bushel</i> de milho você precisasse de $4 e o preço do
-                      bitcoin fosse $5000. Nesse caso, um <i>bushel</i> de milho
+                      <i>bushel</i> de soja você precisasse de $8 e o preço do
+                      bitcoin fosse $5000. Nesse caso, um <i>bushel</i> de soja
                       é equivalente a
-                      <span class="c-main__details-math">4 / 5000</span> ou
-                      <span class="c-main__details-math">0,0008 BTC</span>.
+                      <span class="c-main__details-math">8 / 5000</span> ou
+                      <span class="c-main__details-math">0,0016 BTC</span>.
                     </p>
                   </div>
                 </li>
@@ -259,13 +262,13 @@
                       um Bit é equivalente a
                       <strong>10<sup>-6</sup> BTC</strong> ou
                       <strong>0,000001 BTC</strong>, o que significa que nosso
-                      0,0008 BTC será mostrado como <strong>800 bits</strong>.
+                      0,0016 BTC será mostrado como <strong>1600 bits</strong>.
                     </p>
 
                     <p>
                       O próximo passo é fixar o número em 2 casas decimais
-                      (0,00). Portanto, 800 bits serão mostrados como
-                      <strong>800,00 bits</strong>. <br /><br />
+                      (0,00). Portanto, 1600 bits serão mostrados como
+                      <strong>1.600,00 bits</strong>. <br /><br />
 
                       <span class="c-main__details-charts-config-reminder"
                         >Você pode alterar a unidade nas configurações do
@@ -286,5 +289,7 @@
         </details>
       </section>
     </main>
+    <script src="/js/lightweight-charts.standalone.production.js"></script>
+    <script src="/js/charts.js"></script>
   </body>
 </html>
