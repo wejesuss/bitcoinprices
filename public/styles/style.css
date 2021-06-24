@@ -648,7 +648,97 @@ body {
 
 #c-main__chart {
   width: 100%;
-  height: 18.75rem;
+  height: 25rem;
+  display: flex;
+  flex-direction: column;
+}
+#c-main__chart .c-main__chart-menu {
+  order: 1;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin: 16px 0;
+  border-top: 1px solid #8d8d8d;
+  padding: 2px 0px 2px 0px;
+  position: relative;
+}
+#c-main__chart .c-main__chart-menu button {
+  width: fit-content;
+  max-width: 120px;
+  background: whitesmoke;
+  padding: 8px;
+  border-radius: 0 6px 6px 0px;
+  font-size: 14px;
+  border-width: 1px;
+  transition: all 205ms ease-in;
+}
+#c-main__chart .c-main__chart-menu button:last-of-type {
+  border-radius: 6px 0px 0px 6px;
+  justify-self: right;
+}
+#c-main__chart .c-main__chart-menu button:hover {
+  background-color: initial;
+}
+#c-main__chart .c-main__chart-menu > div {
+  position: absolute;
+  bottom: 0;
+  z-index: 150;
+  width: 120px;
+  background: #fefefe;
+  border: 1px solid #adadad;
+  box-shadow: 1px -1px 4px -2px #90908f;
+}
+#c-main__chart .c-main__chart-menu > div:first-of-type {
+  left: 0;
+  transform: translate(-5%, -25%);
+}
+#c-main__chart .c-main__chart-menu > div:first-of-type ul li .c-main__chart-menu-time-series.c-main__chart-menu-option-active::after {
+  width: 20%;
+}
+#c-main__chart .c-main__chart-menu > div:last-child {
+  justify-self: right;
+  right: 0;
+  transform: translate(6%, -21%);
+}
+#c-main__chart .c-main__chart-menu > div ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  align-items: center;
+  display: block;
+}
+#c-main__chart .c-main__chart-menu > div ul li {
+  padding: 12px 8px;
+  cursor: pointer;
+  transition: all 250ms ease-in;
+}
+#c-main__chart .c-main__chart-menu > div ul li:hover {
+  background: #f0f0f0;
+}
+#c-main__chart .c-main__chart-menu > div ul li .c-main__chart-menu-time-series,
+#c-main__chart .c-main__chart-menu > div ul li .c-main__chart-menu-unit {
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+#c-main__chart .c-main__chart-menu > div ul li .c-main__chart-menu-time-series.c-main__chart-menu-option-active,
+#c-main__chart .c-main__chart-menu > div ul li .c-main__chart-menu-unit.c-main__chart-menu-option-active {
+  position: relative;
+  color: #0b7596;
+}
+#c-main__chart .c-main__chart-menu > div ul li .c-main__chart-menu-time-series.c-main__chart-menu-option-active::after,
+#c-main__chart .c-main__chart-menu > div ul li .c-main__chart-menu-unit.c-main__chart-menu-option-active::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -4px;
+  width: 50%;
+  height: 2px;
+  background: #e4c61c;
+  border-radius: 0.4px;
+  animation: sweep 300ms ease-in;
 }
 
 @keyframes sweep {
