@@ -1,6 +1,8 @@
 const createChart = LightweightCharts.createChart;
 const container = document.getElementById("c-main__chart");
 
+const CHART_SPACE = 0.8;
+
 class Series {
   _key = "";
   _minimumGap = 1 * 60 * 60 * 1000;
@@ -70,7 +72,7 @@ const storage = new Series();
 const now = Date.now();
 const chart = createChart(container, {
   width: container.clientWidth,
-  height: container.clientHeight,
+  height: container.clientHeight * CHART_SPACE,
 });
 const lineSeries = chart.addLineSeries({
   color: "gold",
@@ -126,7 +128,7 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 window.addEventListener("resize", () => {
-  chart.resize(container.clientWidth, container.clientHeight);
+  chart.resize(container.clientWidth, container.clientHeight * CHART_SPACE);
 });
 
 function getCommodityAndLang() {
