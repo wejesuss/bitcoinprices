@@ -173,14 +173,13 @@ $component-name: "c-main";
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 24px;
-      // margin-top: 16px;
       margin: 16px 0;
       border-top: 1px solid #8d8d8d;
       padding: 2px 0px 2px 0px;
       position: relative;
 
       button {
-        // display: none;
+        display: none;
         width: fit-content;
         max-width: 120px;
         background: whitesmoke;
@@ -193,54 +192,35 @@ $component-name: "c-main";
         &:last-of-type {
           border-radius: 6px 0px 0px 6px;
           justify-self: right;
-          // display: none;
         }
 
         &:hover {
           background-color: initial;
         }
+
+        @include breakpoint(small-only) {
+          display: block;
+        }
       }
 
       & > div {
-        position: absolute;
-        bottom: 0;
         z-index: 150;
-        // background: #ffffff;
-        width: 120px;
         background: #fefefe;
-        border: 1px solid #adadad;
-        box-shadow: 1px -1px 4px -2px #90908f;
-
-        &:first-of-type {
-          left: 0;
-          transform: translate(-5%, -25%);
-
-          ul li {
-            .#{$component-name}__chart-menu-time-series {
-              &.#{$component-name}__chart-menu-option-active::after {
-                width: 20%;
-              }
-            }
-          }
-        }
 
         &:last-child {
           justify-self: right;
           right: 0;
-          transform: translate(6%, -21%);
         }
 
         ul {
           padding: 0;
           margin: 0;
           list-style: none;
-          // display: inline-flex;
+          display: inline-flex;
           align-items: center;
-          display: block;
 
           li {
-            // padding: 16px 4px;
-            padding: 12px 8px;
+            padding: 16px 4px;
             cursor: pointer;
             transition: all 250ms ease-in;
 
@@ -264,7 +244,6 @@ $component-name: "c-main";
                   left: 50%;
                   transform: translateX(-50%);
                   bottom: -4px;
-                  // width: 70%;
                   width: 50%;
                   height: 2px;
                   background: #e4c61c;
@@ -272,6 +251,52 @@ $component-name: "c-main";
                   animation: sweep 300ms ease-in;
                 }
               }
+            }
+          }
+        }
+
+        @include breakpoint(small-only) {
+          position: absolute;
+          bottom: 0;
+          width: 120px;
+          border: 1px solid #adadad;
+          box-shadow: 1px -1px 4px -2px #90908f;
+          opacity: 0.01;
+          transform-origin: bottom center;
+          transition: all 305ms ease-in;
+
+          &:first-of-type {
+            left: 0;
+            transform: translate(-7%, -25%) rotateX(-90deg);
+
+            &.open {
+              transform: translate(-7%, -25%) rotateX(0deg);
+              opacity: 1;
+            }
+
+            ul li {
+              .#{$component-name}__chart-menu-time-series {
+                &.#{$component-name}__chart-menu-option-active::after {
+                  width: 20%;
+                }
+              }
+            }
+          }
+
+          &:last-child {
+            transform: translate(7%, -21%) rotateX(-90deg);
+
+            &.open {
+              transform: translate(7%, -21%) rotate(0deg);
+              opacity: 1;
+            }
+          }
+
+          ul {
+            display: block;
+
+            li {
+              padding: 12px 8px;
             }
           }
         }

@@ -35,7 +35,7 @@ $component-name: "c-header";
     padding: rem(8);
     left: 50%;
     transform: translateX(-50%) rotateX(-90deg);
-    opacity: 0.25;
+    opacity: 0.01;
     width: max(calc(100% + 16px), 85px);
     min-width: -webkit-fill-available;
     top: calc(100% + 10px);
@@ -43,7 +43,7 @@ $component-name: "c-header";
     background: linear-gradient(25deg, #f1ca3d, #f3bd76);
     border-radius: $global-radius;
     transform-origin: top center;
-    transition: all $transition-duration-entrance ease-in 300ms;
+    transition: all $transition-duration-exit ease-in 200ms;
   }
 
   &__link {
@@ -70,7 +70,7 @@ $component-name: "c-header";
   &__item:hover ul.#{$component-name}__dropdown {
     transform: translateX(-50%) rotateX(0deg);
     opacity: 1;
-    transition: all $transition-duration-exit ease-out 200ms;
+    transition: all $transition-duration-entrance ease-out 300ms;
   }
 
   &__flag {
