@@ -117,7 +117,6 @@ window.addEventListener("DOMContentLoaded", () => {
     localization: {
       locale: lang,
       priceFormatter: (price) => {
-        console.log(price);
         return Intl.NumberFormat(lang, {
           minimumFractionDigits: 2,
           maximumFractionDigits: 2,
