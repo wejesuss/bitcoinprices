@@ -95,7 +95,10 @@
           <div class="c-main__chart-menu">
             <button type="button">Date Range ^</button>
             <button type="button">Chart Units ^</button>
-            <div class="c-main__chart-menu-date-range">
+            <div
+              class="c-main__chart-menu-date-range"
+              data-action="changeRange"
+            >
               <ul>
                 <li title="3 Months">
                   <div class="c-main__chart-menu-time-series">3M</div>
@@ -121,7 +124,7 @@
                 </li>
               </ul>
             </div>
-            <div class="c-main__chart-menu-units">
+            <div class="c-main__chart-menu-units" data-action="changeUnit">
               <ul>
                 <li title="decaBitcoin">
                   <div class="c-main__chart-menu-unit">daBTC</div>
