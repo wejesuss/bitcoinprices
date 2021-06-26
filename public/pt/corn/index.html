@@ -89,7 +89,73 @@
       <section>
         <h3 class="c-main__chart-title">Milho</h3>
 
-        <div id="c-main__chart"></div>
+        <div id="c-main__chart">
+          <div class="c-main__chart-menu">
+            <button type="button">
+              Intervalo de Tempo ^
+            </button>
+            <button type="button">
+              Unidades de Medida ^
+            </button>
+            <div
+              class="c-main__chart-menu-date-range"
+              data-action="changeRange"
+            >
+              <ul>
+                <li title="3 Meses" data-action-param="3 Months">
+                  <div class="c-main__chart-menu-time-series">3M</div>
+                </li>
+                <li title="6 Meses" data-action-param="6 Months">
+                  <div class="c-main__chart-menu-time-series">6M</div>
+                </li>
+                <li title="YTD" data-action-param="YTD">
+                  <div class="c-main__chart-menu-time-series">YTD</div>
+                </li>
+                <li title="5 Anos" data-action-param="5 Years">
+                  <div class="c-main__chart-menu-time-series">5A</div>
+                </li>
+                <li title="Todos" data-action-param="All">
+                  <div
+                    class="
+                      c-main__chart-menu-time-series
+                      c-main__chart-menu-option-active
+                    "
+                  >
+                    Todos
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="c-main__chart-menu-units" data-action="changeUnit">
+              <ul>
+                <li title="decaBitcoin" data-action-param="decaBitcoin">
+                  <div class="c-main__chart-menu-unit">daBTC</div>
+                </li>
+                <li title="Bitcoin" data-action-param="Bitcoin">
+                  <div class="c-main__chart-menu-unit">BTC</div>
+                </li>
+                <li title="centiBitcoin" data-action-param="centiBitcoin">
+                  <div class="c-main__chart-menu-unit">cBTC</div>
+                </li>
+                <li title="miliBitcoin" data-action-param="milliBitcoin">
+                  <div class="c-main__chart-menu-unit">mBTC</div>
+                </li>
+                <li title="microBitcoin" data-action-param="microBitcoin">
+                  <div
+                    class="
+                      c-main__chart-menu-unit c-main__chart-menu-option-active
+                    "
+                  >
+                    &#181;Bitcoin
+                  </div>
+                </li>
+                <li title="Satoshi" data-action-param="Satoshi">
+                  <div class="c-main__chart-menu-unit">SAT</div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
 
         <p class="c-main__details-info-header">
           Veja abaixo mais informações sobre esse gráfico
@@ -291,5 +357,6 @@
     </main>
     <script src="/js/lightweight-charts.standalone.production.js"></script>
     <script src="/js/charts.js"></script>
+    <script src="/js/menu.js"></script>
   </body>
 </html>
