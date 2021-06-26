@@ -4,6 +4,13 @@ const menuOptions = document.querySelectorAll(
 const buttons = document.querySelectorAll(".c-main__chart-menu button");
 const optionActiveClass = "c-main__chart-menu-option-active";
 
+const CHART_ACTIONS = {
+  changeUnit: changeUnit,
+  changeRange: changeRange,
+};
+
+let isChangingDateRange = false;
+
 buttons.forEach(addListenerToMenu);
 
 function addListenerToMenu(button, index) {
@@ -18,17 +25,49 @@ function addListenerToMenu(button, index) {
   };
 
   menuOptions[index].querySelectorAll("ul li").forEach((el, _, list) => {
+    const title = el.getAttribute("title");
+
     if (window.innerWidth <= 599) {
-      const title = el.getAttribute("title");
       el.firstElementChild.textContent = title;
     }
 
     el.addEventListener("click", () => {
-      list.forEach((item) =>
-        item.firstElementChild.classList.remove(optionActiveClass)
-      );
+      isChangingDateRange = true;
+      const actionName = menuOptions[index].getAttribute("data-action");
+      const action = CHART_ACTIONS[actionName];
 
-      el.firstElementChild.classList.add(optionActiveClass);
+      toggleActiveOption(list, el);
+
+      if (action && typeof action === "function") {
+        action(title);
+        setTimeout(() => {
+          isChangingDateRange = false;
+        }, 200);
+      }
     });
+  });
+}
+
+function toggleActiveOption(list, el) {
+  list.forEach((item) =>
+    item.firstElementChild.classList.remove(optionActiveClass)
+  );
+
+  el.firstElementChild.classList.add(optionActiveClass);
+}
+
+function onVisibleTimeRangeChanged() {
+  menuOptions.forEach((option) => {
+    option.classList.remove("open");
+    if (
+      option.getAttribute("data-action") === "changeRange" &&
+      !isChangingDateRange
+    ) {
+      option
+        .querySelectorAll("ul li")
+        .forEach((item) =>
+          item.firstElementChild.classList.remove(optionActiveClass)
+        );
+    }
   });
 }

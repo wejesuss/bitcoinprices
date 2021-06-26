@@ -3,6 +3,66 @@ const container = document.getElementById("c-main__chart");
 
 const CHART_SPACE = 0.8;
 
+const BITCOIN_UNITS = {
+  decabitcoin: 0.1,
+  bitcoin: 1,
+  centibitcoin: 100,
+  millibitcoin: 1000,
+  microbitcoin: 1000000,
+  satoshi: 100000000,
+};
+
+const CHART_RANGE = {
+  "_3 months": 0,
+  get "3 months"() {
+    return this["_3 months"];
+  },
+  set "3 months"(date) {
+    const today = new Date(date);
+    this["_3 months"] = today.setMonth(today.getMonth() - 3, today.getDate());
+  },
+
+  "_6 months": 0,
+  get "6 months"() {
+    return this["_6 months"];
+  },
+  set "6 months"(date) {
+    const today = new Date(date);
+    this["_6 months"] = today.setMonth(today.getMonth() - 6, today.getDate());
+  },
+
+  _ytd: 0,
+  get ytd() {
+    return this["_ytd"];
+  },
+  set ytd(date) {
+    const today = new Date(date);
+    this["_ytd"] = today.setMonth(0, 1);
+  },
+
+  "_5 years": 0,
+  get "5 years"() {
+    return this["_5 years"];
+  },
+  set "5 years"(date) {
+    const today = new Date(date);
+
+    this["_5 years"] = today.setFullYear(
+      today.getFullYear() - 5,
+      today.getMonth(),
+      today.getDate()
+    );
+  },
+
+  _all: 0,
+  get all() {
+    return this["_all"];
+  },
+  set all(date) {
+    this["_all"] = new Date(date).getTime();
+  },
+};
+
 class Series {
   _key = "";
   _minimumGap = 1 * 60 * 60 * 1000;
@@ -81,6 +141,8 @@ const lineSeries = chart.addLineSeries({
 let commodity = "corn";
 let lang = "en";
 let bitcoinUnit = 1000000;
+let startDate = "";
+let endDate = "";
 
 window.addEventListener("DOMContentLoaded", () => {
   [lang, commodity] = getCommodityAndLang();
@@ -124,6 +186,8 @@ window.addEventListener("DOMContentLoaded", () => {
       },
     },
   });
+
+  chart.timeScale().subscribeVisibleTimeRangeChange(onVisibleTimeRangeChanged);
 });
 
 window.addEventListener("resize", () => {
@@ -191,6 +255,49 @@ function renderChart(data_series, lineSeries) {
   commoditySeries = filterSeries(commoditySeries);
 
   const normalizedSeries = normalizeDate(bitcoinSeries, commoditySeries);
+  startDate = normalizedSeries[0].time;
+  endDate = normalizedSeries[normalizedSeries.length - 1].time;
+
+  setRange(startDate, endDate);
 
   lineSeries.setData(normalizedSeries);
+}
+
+function changeUnit(unitName) {
+  const unit = getUnit(unitName) || 1000000;
+  const { data_series } = storage.getSeries();
+
+  if (data_series) {
+    bitcoinUnit = unit;
+    renderChart(data_series, lineSeries);
+  }
+}
+
+function changeRange(dateRange = "All") {
+  const range = getRange(dateRange);
+
+  chart.timeScale().setVisibleRange({
+    from: range / 1000,
+    to: new Date(endDate).getTime() / 1000,
+  });
+}
+
+function getUnit(unitName = "microBitcoin") {
+  return BITCOIN_UNITS[unitName.toLowerCase()];
+}
+
+function getRange(dateRange = "All") {
+  return CHART_RANGE[dateRange.toLowerCase()];
+}
+
+function setRange(startDate, endDate) {
+  Object.keys(CHART_RANGE)
+    .filter((range) => !range.includes("_"))
+    .forEach((range) => {
+      if (range === "all") {
+        CHART_RANGE[range] = startDate;
+      } else {
+        CHART_RANGE[range] = endDate;
+      }
+    });
 }
