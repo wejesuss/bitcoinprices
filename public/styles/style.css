@@ -666,7 +666,7 @@ body {
 #c-main__chart .c-main__chart-menu button {
   display: none;
   width: fit-content;
-  max-width: 120px;
+  max-width: 160px;
   background: whitesmoke;
   padding: 8px;
   border-radius: 0 6px 6px 0px;
@@ -684,6 +684,20 @@ body {
 @media (max-width: 37.4375em) {
   #c-main__chart .c-main__chart-menu button {
     display: block;
+  }
+  #c-main__chart .c-main__chart-menu button.c-main__chart-menu-button-expanded ~ div:first-of-type {
+    transform: translate(13%, -25%) rotateX(-90deg);
+  }
+  #c-main__chart .c-main__chart-menu button.c-main__chart-menu-button-expanded ~ div:first-of-type.open {
+    transform: translate(13%, -25%) rotateX(0deg);
+    opacity: 1;
+  }
+  #c-main__chart .c-main__chart-menu button.c-main__chart-menu-button-expanded ~ div:last-child {
+    transform: translate(-16%, -21%) rotateX(-90deg);
+  }
+  #c-main__chart .c-main__chart-menu button.c-main__chart-menu-button-expanded ~ div:last-child.open {
+    transform: translate(-16%, -21%) rotate(0deg);
+    opacity: 1;
   }
 }
 #c-main__chart .c-main__chart-menu > div {
