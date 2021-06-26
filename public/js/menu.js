@@ -26,6 +26,7 @@ function addListenerToMenu(button, index) {
 
   menuOptions[index].querySelectorAll("ul li").forEach((el, _, list) => {
     const title = el.getAttribute("title");
+    const actionParam = el.getAttribute("data-action-param");
 
     if (window.innerWidth <= 599) {
       el.firstElementChild.textContent = title;
@@ -39,7 +40,7 @@ function addListenerToMenu(button, index) {
       toggleActiveOption(list, el);
 
       if (action && typeof action === "function") {
-        action(title);
+        action(actionParam);
         setTimeout(() => {
           isChangingDateRange = false;
         }, 200);
