@@ -705,6 +705,7 @@ body {
   padding: 16px 4px;
   cursor: pointer;
   transition: all 250ms ease-in;
+  user-select: none;
 }
 #c-main__chart .c-main__chart-menu > div ul li:hover {
   background: #f0f0f0;
