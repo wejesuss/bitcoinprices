@@ -45,7 +45,7 @@ $component-name: "c-main";
       align-items: center;
       cursor: pointer;
       transition: background-color $transition-duration-entrance;
-      box-shadow: #b1b1b1 0 0 6px 0;
+      box-shadow: #b1b1b1 0 0 4px 0;
 
       &:hover {
         background-color: #fad815de;

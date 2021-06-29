@@ -1,0 +1,33 @@
+$component-name: "c-footer";
+
+.#{$component-name} {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: linear-gradient(45deg, #232323e3, #232323);
+  margin-top: rem(32);
+
+  &__options {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+  }
+
+  &__item {
+    margin: 0 rem(8);
+  }
+
+  &__link {
+    text-decoration: none;
+    font-size: rem(15);
+    text-transform: uppercase;
+    color: #b8862b;
+    transition: color $transition-function-ease-in-out-circ $transition-duration;
+
+    &:hover {
+      text-decoration: underline;
+      color: #c58c23;
+    }
+  }
+}
