@@ -25,12 +25,14 @@ module.exports = async (req, res) => {
       ...removeEmpty(dataset_data),
     }));
 
-    return res.send(series);
+    res.setHeader("Cache-Control", "max-age=0, s-maxage=7200");
+    return res.status(200).send(series);
   } else if (commodities.includes(commodity)) {
     const seriesURL = `${endpoints[commodity]}${fillkey}`;
-
     const series = await getSeriesData(seriesURL);
-    return res.send(removeEmpty(series["dataset_data"]));
+
+    res.setHeader("Cache-Control", "max-age=0, s-maxage=7200");
+    return res.status(200).send(removeEmpty(series["dataset_data"]));
   }
 
   return res.status(400).json({ error: "Invalid commodity tag" });
