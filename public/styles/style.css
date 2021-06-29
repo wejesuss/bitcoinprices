@@ -497,7 +497,7 @@ body {
   color: darkorange;
 }
 .c-main__details {
-  margin: 32px auto;
+  margin: 2rem auto;
   width: 100%;
   max-width: 400px;
 }
@@ -507,22 +507,22 @@ body {
   }
 }
 .c-main__details-info-header {
-  margin: 24px 24px 0;
+  margin: 1.5rem 1.5rem 0;
 }
 .c-main__details > summary {
-  padding: 12px;
+  padding: 0.75rem;
   background-color: #fcd810;
   border: 1px solid #e2c31e;
   border-bottom: none;
-  border-radius: 6px 6px 0px 0px;
+  border-radius: 0.375rem 0.375rem 0 0;
   font-weight: bold;
   letter-spacing: 0.5px;
   list-style: none;
   display: flex;
   align-items: center;
   cursor: pointer;
-  transition: background-color 200ms;
-  box-shadow: #b1b1b1 0px 0px 6px 0px;
+  transition: background-color 235ms;
+  box-shadow: #b1b1b1 0 0 6px 0;
 }
 .c-main__details > summary:hover {
   background-color: #fad815de;
@@ -530,24 +530,24 @@ body {
 .c-main__details > summary::before {
   content: "";
   background: url("/img/arrow.svg") center no-repeat;
-  width: 20px;
-  height: 20px;
-  margin-right: 8px;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-right: 0.5rem;
   transition: transform ease-in-out 305ms;
 }
 .c-main__details > summary ~ * {
   background: #f1f0f0bf;
-  border-radius: 0 0 6px 6px;
+  border-radius: 0 0 0.375rem 0.375rem;
   border: 1px solid #e2c31e;
   border-top: none;
-  padding: 8px;
+  padding: 0.5rem;
   margin-top: 0em;
   text-align: justify;
-  line-height: 24px;
+  line-height: 1.5rem;
 }
 @media (min-width: 37.5em) {
   .c-main__details > summary ~ * {
-    padding: 8px 24px;
+    padding: 0.5rem 1.5rem;
   }
 }
 .c-main__details > summary ~ * li > span {
@@ -571,15 +571,15 @@ body {
   list-style-position: inside;
 }
 .c-main__details-links span {
-  font-size: 16px;
+  font-size: 1rem;
 }
 .c-main__details-links li {
-  margin-top: 8px;
+  margin-top: 0.5rem;
 }
 .c-main__details-links li a {
   color: #916801;
   text-decoration: none;
-  transition: all ease 300ms;
+  transition: all ease 305ms;
 }
 .c-main__details-links li a:hover {
   text-decoration: underline;
@@ -589,15 +589,15 @@ body {
   color: transparent;
 }
 .c-main__details-math-details ol {
-  padding: 4px;
+  padding: 0.25rem;
   list-style-position: inside;
 }
 .c-main__details-math-details ol ul {
-  padding: 8px;
+  padding: 0.5rem;
 }
 @media (max-width: 37.4375em) {
   .c-main__details-math-details ol ul {
-    font-size: 16px;
+    font-size: 1rem;
   }
 }
 .c-main__details-math-details ol .c-main__details-math {
@@ -607,11 +607,11 @@ body {
 }
 .c-main__details-charts-config-reminder {
   font-style: italic;
-  font-size: 15px;
+  font-size: 0.9375rem;
 }
 .c-main__details time {
   font-family: monospace;
-  font-size: 16px;
+  font-size: 1rem;
   letter-spacing: -0.5px;
 }
 
@@ -626,10 +626,10 @@ body {
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  margin: 16px 0;
+  gap: 1.5rem;
+  margin: 1rem 0;
   border-top: 1px solid #8d8d8d;
-  padding: 2px 0px 2px 0px;
+  padding: 0.125rem 0 0.125rem 0;
   position: relative;
 }
 #c-main__chart .c-main__chart-menu button {
@@ -637,14 +637,14 @@ body {
   width: fit-content;
   max-width: 160px;
   background: whitesmoke;
-  padding: 8px;
-  border-radius: 0 6px 6px 0px;
-  font-size: 14px;
+  padding: 0.5rem;
+  border-radius: 0 0.375rem 0.375rem 0;
+  font-size: 0.875rem;
   border-width: 1px;
   transition: all 205ms ease-in;
 }
 #c-main__chart .c-main__chart-menu button:last-of-type {
-  border-radius: 6px 0px 0px 6px;
+  border-radius: 0.375rem 0 0 0.375rem;
   justify-self: right;
 }
 #c-main__chart .c-main__chart-menu button:hover {
@@ -670,7 +670,7 @@ body {
   }
 }
 #c-main__chart .c-main__chart-menu > div {
-  z-index: 150;
+  z-index: 300;
   background: #fefefe;
 }
 #c-main__chart .c-main__chart-menu > div:last-child {
@@ -685,9 +685,9 @@ body {
   align-items: center;
 }
 #c-main__chart .c-main__chart-menu > div ul li {
-  padding: 16px 4px;
+  padding: 1rem 0.25rem;
   cursor: pointer;
-  transition: all 250ms ease-in;
+  transition: all 235ms ease-in;
   user-select: none;
 }
 #c-main__chart .c-main__chart-menu > div ul li:hover {
@@ -695,7 +695,7 @@ body {
 }
 #c-main__chart .c-main__chart-menu > div ul li .c-main__chart-menu-time-series,
 #c-main__chart .c-main__chart-menu > div ul li .c-main__chart-menu-unit {
-  font-size: 14px;
+  font-size: 0.875rem;
   letter-spacing: 0.5px;
   text-align: center;
 }
@@ -715,13 +715,13 @@ body {
   height: 2px;
   background: #e4c61c;
   border-radius: 0.4px;
-  animation: sweep 300ms ease-in;
+  animation: sweep 305ms ease-in;
 }
 @media (max-width: 37.4375em) {
   #c-main__chart .c-main__chart-menu > div {
     position: absolute;
     bottom: 0;
-    width: 120px;
+    width: 7.5rem;
     border: 1px solid #adadad;
     box-shadow: 1px -1px 4px -2px #90908f;
     opacity: 0.01;
@@ -750,7 +750,7 @@ body {
     display: block;
   }
   #c-main__chart .c-main__chart-menu > div ul li {
-    padding: 12px 8px;
+    padding: 0.75rem 0.5rem;
   }
 }
 
