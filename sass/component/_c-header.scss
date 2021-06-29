@@ -28,22 +28,30 @@ $component-name: "c-header";
     position: relative;
     margin: 0 rem(8);
     color: #b8862b;
+
+    &:hover {
+      .#{$component-name}__dropdown {
+        opacity: 1;
+        transform: rotateX(0) translateX(-50%);
+        transition-timing-function: ease-out;
+      }
+    }
   }
 
   &__dropdown {
-    position: absolute;
-    padding: rem(8);
-    left: 50%;
-    transform: translateX(-50%) rotateX(-90deg);
-    opacity: 0.01;
-    width: max(calc(100% + 16px), 85px);
-    min-width: -webkit-fill-available;
-    top: calc(100% + 10px);
-    list-style: none;
     background: linear-gradient(25deg, #f1ca3d, #f3bd76);
     border-radius: $global-radius;
+    left: 50%;
+    list-style: none;
+    min-width: -webkit-fill-available;
+    opacity: 0.01;
+    padding: rem(8);
+    position: absolute;
+    top: calc(100% + 10px);
     transform-origin: top center;
-    transition: all $transition-duration-exit ease-in 200ms;
+    transform: translateX(-50%) rotateX(-90deg);
+    transition: all $transition-duration-fast 200ms ease-in;
+    width: max(calc(100% + 16px), 85px);
   }
 
   &__link {
@@ -65,12 +73,6 @@ $component-name: "c-header";
 
   &__dropdown-item:not(:last-child) {
     margin-bottom: rem(8);
-  }
-
-  &__item:hover ul.#{$component-name}__dropdown {
-    transform: translateX(-50%) rotateX(0deg);
-    opacity: 1;
-    transition: all $transition-duration-entrance ease-out 300ms;
   }
 
   &__flag {
