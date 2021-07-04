@@ -15,11 +15,13 @@ buttons.forEach(addListenerToMenu);
 
 function addListenerToMenu(button, index) {
   button.addEventListener("click", () => {
+    button.classList.toggle("active");
     menuOptions[index].classList.toggle("open");
   });
 
   button.onblur = () => {
     setTimeout(() => {
+      button.classList.remove("active");
       menuOptions[index].classList.remove("open");
     }, 100);
   };
