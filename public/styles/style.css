@@ -634,6 +634,7 @@ body {
 }
 #c-main__chart .c-main__chart-menu button {
   display: none;
+  align-items: center;
   width: fit-content;
   max-width: 160px;
   background: whitesmoke;
@@ -650,9 +651,22 @@ body {
 #c-main__chart .c-main__chart-menu button:hover {
   background-color: initial;
 }
+#c-main__chart .c-main__chart-menu button::after {
+  content: "";
+  background: url("/img/arrow.svg") center no-repeat;
+  width: 1rem;
+  height: 1rem;
+  margin-left: 0.5rem;
+  transform: rotate(180deg);
+  transition: transform ease-in-out 305ms;
+}
+#c-main__chart .c-main__chart-menu button.active::after {
+  transform: rotate(0deg);
+  transition: transform ease-out 305ms;
+}
 @media (max-width: 37.4375em) {
   #c-main__chart .c-main__chart-menu button {
-    display: block;
+    display: flex;
   }
   #c-main__chart .c-main__chart-menu button.c-main__chart-menu-button-expanded ~ div:first-of-type {
     transform: translate(13%, -25%) rotateX(-90deg);

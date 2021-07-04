@@ -180,6 +180,7 @@ $component-name: "c-main";
 
       button {
         display: none;
+        align-items: center;
         width: fit-content;
         max-width: 160px;
         background: whitesmoke;
@@ -198,8 +199,23 @@ $component-name: "c-main";
           background-color: initial;
         }
 
+        &::after {
+          content: "";
+          background: url("/img/arrow.svg") center no-repeat;
+          width: rem(16);
+          height: rem(16);
+          margin-left: rem(8);
+          transform: rotate(180deg);
+          transition: transform ease-in-out $transition-duration;
+        }
+
+        &.active::after {
+          transform: rotate(0deg);
+          transition: transform ease-out $transition-duration;
+        }
+
         @include breakpoint(small-only) {
-          display: block;
+          display: flex;
 
           &.#{$component-name}__chart-menu-button-expanded {
             & ~ div:first-of-type {
