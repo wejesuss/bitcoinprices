@@ -669,17 +669,17 @@ body {
     display: flex;
   }
   #c-main__chart .c-main__chart-menu button.c-main__chart-menu-button-expanded ~ div:first-of-type {
-    transform: translate(13%, -25%) rotateX(-90deg);
+    transform: translate(18%, -25%) rotateX(-90deg);
   }
   #c-main__chart .c-main__chart-menu button.c-main__chart-menu-button-expanded ~ div:first-of-type.open {
-    transform: translate(13%, -25%) rotateX(0deg);
+    transform: translate(18%, -25%) rotateX(0deg);
     opacity: 1;
   }
   #c-main__chart .c-main__chart-menu button.c-main__chart-menu-button-expanded ~ div:last-child {
-    transform: translate(-16%, -21%) rotateX(-90deg);
+    transform: translate(-21%, -21%) rotateX(-90deg);
   }
   #c-main__chart .c-main__chart-menu button.c-main__chart-menu-button-expanded ~ div:last-child.open {
-    transform: translate(-16%, -21%) rotate(0deg);
+    transform: translate(-21%, -21%) rotate(0deg);
     opacity: 1;
   }
 }
@@ -744,20 +744,20 @@ body {
   }
   #c-main__chart .c-main__chart-menu > div:first-of-type {
     left: 0;
-    transform: translate(-7%, -25%) rotateX(-90deg);
+    transform: translate(-2%, -25%) rotateX(-90deg);
   }
   #c-main__chart .c-main__chart-menu > div:first-of-type.open {
-    transform: translate(-7%, -25%) rotateX(0deg);
+    transform: translate(-2%, -25%) rotateX(0deg);
     opacity: 1;
   }
   #c-main__chart .c-main__chart-menu > div:first-of-type ul li .c-main__chart-menu-time-series.c-main__chart-menu-option-active::after {
     width: 20%;
   }
   #c-main__chart .c-main__chart-menu > div:last-child {
-    transform: translate(7%, -21%) rotateX(-90deg);
+    transform: translate(3%, -21%) rotateX(-90deg);
   }
   #c-main__chart .c-main__chart-menu > div:last-child.open {
-    transform: translate(7%, -21%) rotate(0deg);
+    transform: translate(3%, -21%) rotate(0deg);
     opacity: 1;
   }
   #c-main__chart .c-main__chart-menu > div ul {
