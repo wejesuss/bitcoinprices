@@ -156,7 +156,7 @@ cscope.po.out
 .idea/**/workspace.xml
 .idea/**/tasks.xml
 .idea/dictionaries
-.well-known/brave-rewards-verification.txt
+public/.well-known/brave-rewards-verification.txt
 
 # Sensitive or high-churn files:
 .idea/**/dataSources/
