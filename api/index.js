@@ -9,6 +9,7 @@ const fetch = promisify(request);
 
 module.exports = async (req, res) => {
   let { commodity } = req.query;
+  const protocol = req.headers["x-forwarded-proto"] || "https";
 
   if (Array.isArray(commodity)) {
     commodity = String(commodity[0]);
@@ -17,6 +18,10 @@ module.exports = async (req, res) => {
   }
 
   const fillkey = `&api_key=${process.env.QUANDL_API_KEY}`;
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    `${protocol}://${process.env.VERCEL_URL}`
+  );
 
   if (commodity === "all") {
     const allSeries = await getAllSeriesData(fillkey);
